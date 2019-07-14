@@ -11,3 +11,5 @@ import './unit';
 import './specialization';
 import './state-driver';
 import './bindings';
+
+import './string';
