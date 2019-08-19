@@ -1,3 +1,4 @@
+/* @noSelfInFile */
 /// <reference path="./unit.d.ts" />
 
 declare namespace WoWAPI {
@@ -60,7 +61,7 @@ declare namespace WoWAPI {
   type GetSpecializationOutput = [SpecializationIdentifier, SpecializationName, SpecializationDescription, string, string, SpecializationRole];
 }
 
-/** @noSelf, @tupleReturn */
-declare function GetSpecializationInfo(specIndex: number, isInspect?: boolean, isPet?: boolean, genderCode?: WoWAPI.UnitSexOutput): WoWAPI.GetSpecializationOutput;
-declare function GetNumSpecializations(isInspect?: boolean, isPet?: boolean): number;
-declare function GetSpecialization(isInspect?: boolean, isPet?: boolean, specGroup?: number): number;
+/** @tupleReturn */
+declare function GetSpecializationInfo(this: void, specIndex: number, isInspect?: boolean, isPet?: boolean, genderCode?: WoWAPI.UnitSexOutput): WoWAPI.GetSpecializationOutput;
+declare function GetNumSpecializations(this: void, isInspect?: boolean, isPet?: boolean): number;
+declare function GetSpecialization(this: void, isInspect?: boolean, isPet?: boolean, specGroup?: number): number;

@@ -1,12 +1,14 @@
 /// <reference path="./ui-object.d.ts" />
 
 declare namespace WoWAPI {
-  type AnimationWidgetHandler = 'OnPlay' | 'OnPause' | 'OnStop' | 'OnFinished' | BaseWidgetHandler;
-  type AlphaWidgetHandler = AnimationWidgetHandler;
-  type PathWidgetHandler = AnimationWidgetHandler;
-  type RotationWidgetHandler = AnimationWidgetHandler;
-  type ScaleWidgetHandler = AnimationWidgetHandler;
-  type TranslationWidgetHandler = AnimationWidgetHandler;
+
+  type AnimationWidgetHandlerEvent = 'OnPlay' | 'OnPause' | 'OnStop' | 'OnFinished';
+
+  type AlphaWidgetHandler = AnimationWidgetHandlerEvent;
+  type PathWidgetHandler = AnimationWidgetHandlerEvent;
+  type RotationWidgetHandler = AnimationWidgetHandlerEvent;
+  type ScaleWidgetHandler = AnimationWidgetHandlerEvent;
+  type TranslationWidgetHandler = AnimationWidgetHandlerEvent;
 
   type SmoothType =
     'IN' |
@@ -14,7 +16,7 @@ declare namespace WoWAPI {
     'IN_OUT' |
     'OUT_IN';
 
-  class Animation extends UIObject {
+  class Animation {
     // Play the animation.
     Play(): void;
 
@@ -92,14 +94,7 @@ declare namespace WoWAPI {
 
     // Gets the Region object that the animation operates on. The region object is this Animation's parent's parent (the AnimationGroup's parent).
     GetRegionParent(): Region;
-
-    // Same as Frame:HasScript [OnLoad, OnPlay, OnPaused, OnStop, OnFinished, OnUpdate]
-    HasScript(handler: AnimationWidgetHandler): boolean;
-
-    // Same as Frame:GetScript [OnLoad, OnPlay, OnPaused, OnStop, OnFinished, OnUpdate]
-    GetScript(handler: AnimationWidgetHandler): HandlerFunction | null;
-
-    // Same as Frame:SetScript [OnLoad, OnPlay, OnPaused, OnStop, OnFinished, OnUpdate]
-    SetScript(handler: AnimationWidgetHandler, func: HandlerFunction | null): void;
   }
+
+  interface Animation extends UIObject, ScriptObject<Animation, AnimationWidgetHandlerEvent> {}
 }

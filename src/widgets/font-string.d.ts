@@ -1,7 +1,8 @@
-/// <reference path="./region.d.ts" />
+/// <reference path="./font-instance.d.ts" />
+/// <reference path="./layered-region.d.ts" />
 
 declare namespace WoWAPI {
-  class FontString extends Region {
+  class FontString {
     // Get whether long strings without spaces are wrapped or truncated (added 1.11)
     CanNonSpaceWrap(): boolean;
 
@@ -29,4 +30,6 @@ declare namespace WoWAPI {
     // Set the height of the text by scaling graphics Note that can distort text.
     SetTextHeight(pixelHeight: number): void;
   }
+
+  interface FontString extends LayeredRegion, FontInstance {}
 }

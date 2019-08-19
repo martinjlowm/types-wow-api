@@ -1,12 +1,13 @@
 /// <reference path="./animation.d.ts" />
 
 declare namespace WoWAPI {
-  type AnimationGroupWidgetHandler = 'OnLoop' | AnimationWidgetHandler;
+
+  type AnimationGroupWidgetHandlerEvent = 'OnLoop' | AnimationWidgetHandlerEvent;
 
   type LoopType = 'NONE' | 'REPEAT' | 'BOUNCE';
   type LoopState = 'NONE' | 'FORWARD' | 'REVERSE';
 
-  class AnimationGroup extends UIObject {
+  class AnimationGroup {
     // Start playing the animations in this group.
     Play(): void;
 
@@ -45,14 +46,8 @@ declare namespace WoWAPI {
 
     // Create and return an Animation as a child of this group.
     CreateAnimation(animationType: any, name?: string, inheritsFrom?: string): Animation;
-
-    // Same as Frame:HasScript [OnLoad, OnPlay, OnPaused, OnStop, OnFinished, OnUpdate].
-    HasScript(handler: AnimationGroupWidgetHandler): boolean;
-
-    // Same as Frame:GetScript [OnLoad, OnPlay, OnPaused, OnStop, OnFinished, OnUpdate].
-    GetScript(handler: AnimationGroupWidgetHandler): HandlerFunction | null;
-
-    // Same as Frame:SetScript [OnLoad, OnPlay, OnPaused, OnStop, OnFinished, OnUpdate].
-    SetScript(handler: AnimationGroupWidgetHandler, func: HandlerFunction | null): void;
   }
+
+  interface AnimationGroup extends UIObject, ScriptObject<AnimationGroup, AnimationGroupWidgetHandlerEvent> {}
+
 }

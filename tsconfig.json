@@ -13,7 +13,7 @@
     "typeRoots": ["node_modules/@types"]
   },
   "tstl": {
-    "luaTarget": "5.3",
+    "luaTarget": "JIT",
     "luaLibImport": "none",
     "noHeader": true
   },

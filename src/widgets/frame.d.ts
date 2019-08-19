@@ -1,8 +1,12 @@
+/** @noSelfInFile */
+
+/// <reference path="./script-object.d.ts" />
 /// <reference path="./texture.d.ts" />
-/// <reference path="./fontstring.d.ts" />
+/// <reference path="./font-string.d.ts" />
 
 declare namespace WoWAPI {
-  export type FrameStrata =
+
+  type FrameStrata =
     'TOOLTIP' |
     'FULLSCREEN_DIALOG' |
     'FULLSCREEN' |
@@ -10,17 +14,41 @@ declare namespace WoWAPI {
     'HIGH' |
     'MEDIUM' |
     'LOW' |
-    'BACKGROUND';
+    'BACKGROUND' |
+    'WORLD';
 
-  class Frame extends Region {
-    CreateFontString(name?: string, layer?: string, inheritsFrom?: Region): FontString;
+  type FrameWidgetHandlerEvent =
+    'OnAttributeChanged' |
+    'OnChar' |
+    'OnDisable' |
+    'OnDragStart' |
+    'OnDragStop' |
+    'OnEnable' |
+    'OnEnter' |
+    'OnEvent' |
+    'OnHide' |
+    'OnHyperlinkClick' |
+    'OnHyperlinkEnter' |
+    'OnHyperlinkLeave' |
+    'OnKeyDown' |
+    'OnKeyUp' |
+    'OnLeave' |
+    'OnMouseDown' |
+    'OnMouseUp' |
+    'OnMouseWheel' |
+    'OnReceiveDrag' |
+    'OnShow' |
+    'OnSizeChanged';
+
+  class Frame {
+    CreateFontString(name?: string, layer?: string, inheritsFrom?: Region | string): FontString;
     CreateTexture(name?: string, layer?: string, inheritsFrom?: Region): Texture;
     CreateTitleRegion(): void;
     DisableDrawLayer(layer: string): void;
     EnableDrawLayer(layer: string): void;
-    EnableKeyboard(enableFlag: boolean): void;
-    EnableMouse(enableFlag: boolean): void;
-    EnableMouseWheel(enableFlag: boolean): void;
+    EnableKeyboard(enableFlag?: boolean): void;
+    EnableMouse(enableFlag?: boolean): void;
+    EnableMouseWheel(enableFlag?: boolean): void;
     GetAttribute(prefix: string, name: string, suffix: string): string | number | null;
     GetAttribute(name: string): string | number | null;
     SetAttribute(attribute: string, value: string | number | null): void;
@@ -37,17 +65,17 @@ declare namespace WoWAPI {
     GetFrameStrata(): number;
     GetFrameType(): string;
     GetHitRectInsets(): [number, number];
-    GetID(): string;
+    GetID(): number;
     GetMaxResize(): [number, number];
     GetMinResize(): [number, number];
     GetNumChildren(): number;
     GetNumRegions(): number;
     GetRegions(): Region[];
     GetScale(): number;
-    GetScript(handler: FrameWidgetHandler): HandlerFunction;
+    /* GetScript(handler: FrameWidgetHandler): HandlerFunction; */
     GetTitleRegion(): Region;
-    HasScript(handler: FrameWidgetHandler): boolean;
-    HookScript(handler: FrameWidgetHandler, func: HandlerFunction): HandlerFunction;
+    /* HasScript(handler: FrameWidgetHandler): boolean; */
+    /* HookScript(handler: FrameWidgetHandler, func: HandlerFunction): HandlerFunction; */
     IgnoreDepth(ignoreFlag: boolean): void;
     IsClampedToScreen(): boolean;
     IsEventRegistered(event: string): boolean;
@@ -74,13 +102,14 @@ declare namespace WoWAPI {
     SetFrameLevel(level: number): void;
     SetFrameStrata(strata: FrameStrata): void;
     SetHitRectInsets(left: number, right: number, top: number, bottom: number): void;
+    SetPropagateKeyboardInput(enableFlag?: boolean): void;
     SetID(id: string): void;
     SetMaxResize(maxWidth: number, maxHeight: number): void;
     SetMinResize(minWidth: number, minHeight: number): void;
     SetMovable(isMovable: boolean): void;
     SetResizable(isResizable: boolean): void;
     SetScale(scale: number): void;
-    SetScript(handler: FrameWidgetHandler, func: HandlerFunction): void;
+    /* SetScript(handler: FrameWidgetHandler, func: HandlerFunction): void; */
     SetToplevel(isTopLevel: boolean): void;
     SetUserPlaced(isUserPlaced: boolean): void;
     StartMoving(): void;
@@ -90,27 +119,7 @@ declare namespace WoWAPI {
     UnregisterEvent(event: string): void;
   }
 
-  type BaseWidgetHandler = 'OnLoad' | 'OnUpdate';
-  type FrameWidgetHandler = 'OnChar' | 'OnDragStart' | 'OnDragStop' | 'OnEnter' | 'OnEvent' | 'OnHide' | 'OnKeyDown' | 'OnKeyUp' | 'OnLeave' | 'OnMouseDown' | 'OnMouseUp' | 'OnMouseWheel' | 'OnReceiveDrag' | 'OnShow' | 'OnSizeChanged' | BaseWidgetHandler;
-  type ButtonWidgetHandler = 'OnClick' | 'OnDoubleClick' | 'PostClick' | 'PreClick' | FrameWidgetHandler;
-  type CheckButtonWidgetHandler = 'OnDisable' | ButtonWidgetHandler | FrameWidgetHandler;
-  type ColorSelectWidgetHandler = 'OnColorSelect' | ButtonWidgetHandler | FrameWidgetHandler;
-  type ModelWidgetHandler = 'OnAnimFinished' | 'OnUpdateModel' | ButtonWidgetHandler | FrameWidgetHandler;
-  type DressUpModelWidgetHandler = ModelWidgetHandler | FrameWidgetHandler;
-  type EditBoxWidgetHandler = 'OnArrowPressed' | 'OnCursorChanged' | 'OnEditFocusGained' | 'OnEditFocusLost' | 'OnEnterPressed' | 'OnEscapePressed' | 'OnHyperlinkClick' | 'OnHyperlinkEnter' | 'OnHyperlinkLeave' | 'OnInputLanguageChanged' | 'OnSpacePressed' | 'OnTabPressed' | 'OnTextChanged' | 'OnTextSet' | FrameWidgetHandler;
-  type GameTooltipWidgetHandler = 'OnTooltipAddMoney' | 'OnTooltipCleared' | 'OnTooltipSetAchievement' | 'OnTooltipSetDefaultAnchor' | 'OnTooltipSetItem' | 'OnTooltipSetSpell' | 'OnTooltipSetUnit' | FrameWidgetHandler;
-  type LootButtonWidgetHandler = ButtonWidgetHandler;
-  type MessageFrameWidgetHandler = FrameWidgetHandler;
-  type MinimapWidgetHandler = FrameWidgetHandler;
-  type PlayerModelWidgetHandler = ModelWidgetHandler;
-  type QuestPOIWidgetHandler = 'OnAttributeChanged' | 'OnDisable' | 'OnEnable' | FrameWidgetHandler;
-  type ScrollFrameWidgetHandler = 'OnHorizontalScroll' | 'OnScrollRangeChanged' | 'OnVerticalScroll' | FrameWidgetHandler;
-  type ScrollingMessageFrameWidgetHandler = 'OnHyperlinkClick' | 'OnHyperlinkEnter' | 'OnHyperlinkLeave' | 'OnMessageScrollChanged' | FrameWidgetHandler;
-  type SimpleHTMLWidgetHandler = 'OnHyperlinkClick' | 'OnHyperlinkEnter' | 'OnHyperlinkLeave' | FrameWidgetHandler;
-  type SliderWidgetHandler = 'OnValueChanged' | FrameWidgetHandler;
-  type StatusBarWidgetHandler = SliderWidgetHandler;
-  type TabardModelWidgetHandler = ModelWidgetHandler;
-  type BrowserWidgetHandler = 'OnButtonUpdate' | 'OnError' | 'OnExternalLink' | FrameWidgetHandler;
+  interface Frame<Inheritor = {}, T = {}> extends Region, ScriptObject<Inheritor extends {} ? Inheritor : Frame, T extends {} ? FrameWidgetHandlerEvent | T : FrameWidgetHandlerEvent> {}
 
   type MouseButton =
     'LeftButtonUp' |
@@ -126,9 +135,8 @@ declare namespace WoWAPI {
     'AnyUp' |
     'AnyDown';
 
-  export type HandlerFunction = any;
 }
 
-declare function CreateFrame(this: void, frameType: WoWAPI.UIObjectFrame): WoWAPI.Frame;
-declare function CreateFrame(this: void, frameType: WoWAPI.UIObjectFrame, frameName: string | null): WoWAPI.Frame;
-declare function CreateFrame(this: void, frameType: WoWAPI.UIObjectFrame, frameName: string | null, parentObject?: WoWAPI.Object | string, inheritsFrom?: WoWAPI.Object | string): WoWAPI.Frame;
+declare function CreateFrame(frameType: 'Frame'): WoWAPI.Frame;
+declare function CreateFrame(frameType: 'Frame', frameName: string | null): WoWAPI.Frame;
+declare function CreateFrame(frameType: 'Frame', frameName: string | null, parentObject?: WoWAPI.Object | string, inheritsFrom?: WoWAPI.Object | string): WoWAPI.Frame;
