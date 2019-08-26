@@ -37,7 +37,10 @@ declare function CompleteQuest(): void;
 declare function GetQuestItemInfo(type: string, index: number): [string, string, string, string, string];
 
 /** @tupleReturn */
-declare function GetItemInfo(itemId: number | string): [string, string, string, string, string];
+declare function GetItemInfo(itemId: number): [string, string, number, string, string, string, string, string, string, string, number];
+/** @tupleReturn */
+declare function GetItemInfo(itemLink: string): [string, string, number, string, string, string, string, string, string, string, number];
+
 declare function GetItemLink(itemId: number): string;
 
 /** @tupleReturn */
@@ -46,10 +49,10 @@ declare function GetQuestLogLeaderBoard(objectiveIndex: number, questIndex: numb
 declare function RemoveQuestWatch(questIndex: number): void;
 declare function AddQuestWatch(questIndex: number): void;
 
+declare function SelectQuestLogEntry(index: number): void;
+
 
 
 /* Move this elsewhere - they are frame-specific functions */
 declare function QuestLog_Update(): void;
 declare function QuestWatch_Update(): void;
-
-declare function SelectQuestLogEntry(index: number): void;

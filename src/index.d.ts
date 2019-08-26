@@ -6,11 +6,14 @@ import './widgets/ui-object';
 import './widgets/frame';
 import './widgets/button';
 import './widgets/check-button';
+import './widgets/game-tooltip';
 import './widgets/slider';
 import './widgets/global';
+
 import './uiparent';
 
 import './unit';
+import './talent';
 import './specialization';
 import './state-driver';
 import './bindings';
@@ -28,4 +31,5 @@ import './sound';
 import './professions';
 import './debug';
 
-import './8.2';
+import './8.0.0';
+import './3.0.0';

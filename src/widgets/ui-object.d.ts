@@ -44,6 +44,7 @@ declare namespace WoWAPI {
     GetAlpha(): number;
     GetName(): string;
     GetObjectType(): string;
+    GetParent(): UIObject;
     IsForbidden(): boolean;
     IsObjectType(type: ObjectType): boolean;
     SetAlpha(alpha: number): void;

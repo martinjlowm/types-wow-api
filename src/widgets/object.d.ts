@@ -4,7 +4,5 @@ declare namespace WoWAPI {
 
   class Object {
     [key: string]: any;
-
-    GetParent(): Object;
   }
 }

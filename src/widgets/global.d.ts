@@ -21,4 +21,6 @@ declare let QuestFrame: WoWAPI.Frame;
 declare let QuestWatchFrame: WoWAPI.Frame;
 declare let ScriptErrorsFrame: WoWAPI.Frame;
 declare let GameTooltip: any;
+declare let ItemRefTooltip: any;
 declare let QuestLogFrame: WoWAPI.Frame;
+declare let MerchantFrame: WoWAPI.Frame;

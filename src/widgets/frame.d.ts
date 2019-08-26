@@ -119,7 +119,7 @@ declare namespace WoWAPI {
     UnregisterEvent(event: string): void;
   }
 
-  interface Frame<Inheritor = {}, T = {}> extends Region, ScriptObject<Inheritor extends {} ? Inheritor : Frame, T extends {} ? FrameWidgetHandlerEvent | T : FrameWidgetHandlerEvent> {}
+  interface Frame<Inheritor = {}, T = {}> extends Region, ScriptObject<Inheritor extends {} ? Frame : Inheritor, T extends {} ? FrameWidgetHandlerEvent | T : FrameWidgetHandlerEvent> {}
 
   type MouseButton =
     'LeftButtonUp' |

@@ -1,3 +1,5 @@
+/** @noSelfInFile */
+
 declare namespace WoWAPI {
   type LocalizedClass = string;
   type LocalizedFaction = string;
@@ -41,19 +43,17 @@ declare namespace WoWAPI {
 }
 
 /** @tupleReturn */
-declare function UnitClass(this: void, unit: string): WoWAPI.UnitClassOutput;
+declare function UnitClass(unit: string): WoWAPI.UnitClassOutput;
 /** @tupleReturn */
-declare function UnitRace(this: void, unit: string): WoWAPI.UnitRaceOutput;
+declare function UnitRace(unit: string): WoWAPI.UnitRaceOutput;
 /** @tupleReturn */
-declare function UnitLevel(this: void, unit: string): WoWAPI.UnitLevelOutput;
+declare function UnitLevel(unit: string): WoWAPI.UnitLevelOutput;
 /** @tupleReturn */
-declare function UnitSex(this: void, unit: string): WoWAPI.UnitSexOutput;
-declare function UnitName(this: void, unit: string): string;
+declare function UnitSex(unit: string): WoWAPI.UnitSexOutput;
+declare function UnitName(unit: string): string;
 
 /** @tupleReturn */
-declare function UnitFactionGroup(this: void, unit: string): WoWAPI.UnitFactionGroupOutput;
-
-
+declare function UnitFactionGroup(unit: string): WoWAPI.UnitFactionGroupOutput;
 
 /** @forRange */
 declare function forRange(start: number, limit: number, step?: number): number[];

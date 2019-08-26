@@ -18,7 +18,7 @@ declare namespace WoWAPI {
     SetDisabledCheckedTexture(texture: string): void;
   }
 
-  interface CheckButton extends Button<CheckButtonWidgetHandlerEvent> {}
+  interface CheckButton extends Button<CheckButton, CheckButtonWidgetHandlerEvent> {}
 
 }
 

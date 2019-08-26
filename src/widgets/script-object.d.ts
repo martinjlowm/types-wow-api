@@ -7,10 +7,10 @@ declare namespace WoWAPI {
 
   class ScriptObject<HandlerObject, HandlerEvent> {
 
+    GetScript(event: HandlerEvent | BaseWidgetHandlerEvent, handler: (this: HandlerObject, ...args: any[]) => void): void;
     GetScript(event: 'OnClick'): (this: HandlerObject, button: MouseButton, down: boolean) => void;
     GetScript(event: 'OnEnter'): (this: HandlerObject, motion: any) => void;
     GetScript(event: 'OnEvent'): (this: HandlerObject, eventName: Event, ...args: any[]) => void;
-    GetScript(event: 'OnHide' | 'OnShow' | 'OnLoad', handler: (this: HandlerObject) => void): void;
     GetScript(event: 'OnLeave'): (this: HandlerObject, motion: any) => void;
     GetScript(event: 'OnMouseDown'): (this: HandlerObject, button: MouseButton) => void;
     GetScript(event: 'OnMouseUp'): (this: HandlerObject, button: MouseButton) => void;
@@ -18,7 +18,7 @@ declare namespace WoWAPI {
     GetScript(event: 'OnUpdate'): (this: HandlerObject, elapsed: number) => void;
     GetScript(event: 'OnValueChanged'): (this: HandlerObject, changed: any) => void;
     GetScript(event: 'OnTextChanged'): (this: HandlerObject, isUserInput: boolean) => void;
-    GetScript(event: HandlerEvent | BaseWidgetHandlerEvent, handler: (this: HandlerObject, ...args: any[]) => void): void;
+    GetScript(event: 'OnHide' | 'OnShow' | 'OnLoad', handler: (this: HandlerObject) => void): void;
 
     HasScript(event: HandlerEvent | BaseWidgetHandlerEvent): boolean;
 

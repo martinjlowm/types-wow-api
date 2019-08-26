@@ -3,7 +3,7 @@
 
 declare function hooksecurefunc(table: any, method: string, hookFunc: (...args: any[]) => any): void;
 
-/* @tupleReturn */
+/** @tupleReturn */
 declare function smatch(input: string, pattern: string): string[];
 
 declare const HIGHLIGHT_FONT_COLOR: WoWAPI.ColorObject;
@@ -37,3 +37,13 @@ declare function SetPortraitTexture(texture: WoWAPI.Texture, unit: string): void
 declare function IsLoggedIn(): boolean;
 
 declare function GetRealmName(): string;
+
+/** @tupleReturn */
+declare function GetRepairAllCost(): [string, boolean];
+
+declare function RepairAllItems(): void;
+
+declare function SetTooltipMoney(...args: any[]): void;
+declare const SELL_PRICE_TEXT: number;
+
+declare function GetMouseFocus(): WoWAPI.Frame;

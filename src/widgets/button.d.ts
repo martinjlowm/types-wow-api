@@ -56,7 +56,7 @@ declare namespace WoWAPI {
     UnlockHighlight(): void;
   }
 
-  interface Button<T = {}> extends Frame<Button, T extends {} ? ButtonWidgetHandlerEvent : ButtonWidgetHandlerEvent | T> {}
+  interface Button<Inheritor = {}, T = {}> extends Frame<Inheritor extends {} ? Inheritor : Button, T extends {} ? ButtonWidgetHandlerEvent : ButtonWidgetHandlerEvent | T> {}
 
 }
 
