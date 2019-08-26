@@ -51,6 +51,7 @@ declare function AddQuestWatch(questIndex: number): void;
 
 declare function SelectQuestLogEntry(index: number): void;
 
+declare function IsQuestWatched(index: number): boolean;
 
 
 /* Move this elsewhere - they are frame-specific functions */
